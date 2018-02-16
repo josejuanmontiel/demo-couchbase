@@ -1,0 +1,292 @@
+bundleColors: &bcs
+  id: ${sequence.number}
+  name: name
+  image: image
+  colorName: ${faker.commerce.color}
+  relatedCategories: related
+
+attributes: &attr
+  id: 7000000000000028507
+  name: CO-MARRONES
+  value: Marrones
+  type: XCOLFILTER
+
+relatedCategories: &rc
+  id: 1815027
+  identifier: ALL_MEN_COLECCION_BUSCADOR_AV2018
+  name:
+  urlCategory: true  
+  
+bundleProductSummaries-l3: &bpsl3
+  id: 8138056
+  type: ProductBean
+  gridElemType: PRODUCT
+  name: ABRIGO LANA/CASHMERE CAMEL
+  nameEn: CASHMERE/WOOL CAMEL COAT
+  productUrl: abrigo-lanacashmere-camel
+  productUrlParam: 8138056
+  image: null
+  isBuyable: true
+  onSpecial: false
+  backSoon: null
+  unitsLot: 1
+  isTop: 1
+  sizeSystem: 0
+  subFamily: 870
+  productType: Clothing
+  bundleColors: #
+  tags: #
+  attributes:
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+  relatedCategories:
+    - <<: *rc
+    - <<: *rc
+    - <<: *rc
+  attachments: #
+  bundleProductSummaries: #
+  detail: #####
+  field5: 7421513702299996
+  sequence: 0.0
+  section: 2
+  family: 22
+  sectionName: HOMBRE
+  sectionNameEN: MEN
+  subFamilyName: ABRIGO VESTIR
+  subFamilyNameEN: SMART COAT
+  startDate: 
+  isSales: null
+ 
+bundleProductSummaries-l2: &bpsl2
+  id: 8138056
+  type: ProductBean
+  gridElemType: PRODUCT
+  name: ABRIGO LANA/CASHMERE CAMEL
+  nameEn: CASHMERE/WOOL CAMEL COAT
+  productUrl: abrigo-lanacashmere-camel
+  productUrlParam: 8138056
+  image: null
+  isBuyable: true
+  onSpecial: false
+  backSoon: null
+  unitsLot: 1
+  isTop: 1
+  sizeSystem: 0
+  subFamily: 870
+  productType: Clothing
+  bundleColors: #
+  tags: #
+  attributes:
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+  relatedCategories:
+    - <<: *rc
+    - <<: *rc
+    - <<: *rc
+  attachments: #
+  bundleProductSummaries:
+      - <<: *bpsl3
+      - <<: *bpsl3
+      - <<: *bpsl3
+      - <<: *bpsl3
+      - <<: *bpsl3
+      - <<: *bpsl3
+      - <<: *bpsl3
+      - <<: *bpsl3
+      - <<: *bpsl3
+      - <<: *bpsl3
+  detail: #####
+  field5: 7421513702299996
+  sequence: 0.0
+  section: 2
+  family: 22
+  sectionName: HOMBRE
+  sectionNameEN: MEN
+  subFamilyName: ABRIGO VESTIR
+  subFamilyNameEN: SMART COAT
+  startDate: 
+  isSales: null
+  
+# product - availabilityDate
+bundleProductSummaries: &bps
+  id: 8138056
+  type: ProductBean
+  gridElemType: PRODUCT
+  name: ABRIGO LANA/CASHMERE CAMEL
+  nameEn: CASHMERE/WOOL CAMEL COAT
+  productUrl: abrigo-lanacashmere-camel
+  productUrlParam: 8138056
+  image: null
+  isBuyable: true
+  onSpecial: false
+  backSoon: null
+  unitsLot: 1
+  isTop: 1
+  sizeSystem: 0
+  subFamily: 870
+  productType: Clothing
+  bundleColors: #
+  tags: #
+  attributes:
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+    - <<: *attr
+  relatedCategories:
+    - <<: *rc
+    - <<: *rc
+    - <<: *rc
+  attachments: #
+  bundleProductSummaries:
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+  detail: #####
+  field5: 7421513702299996
+  sequence: 0.0
+  section: 2
+  family: 22
+  sectionName: HOMBRE
+  sectionNameEN: MEN
+  subFamilyName: ABRIGO VESTIR
+  subFamilyNameEN: SMART COAT
+  startDate: 
+  isSales: null
+         
+relatedCategories: &rc
+  id: ${sequence.number}
+  identifier: ALL_MEN_T_ESP_ESCAPARATES
+  name: Escaparates
+  urlCategory: true   
+ 
+productBig:
+  id: ${sequence.number}
+  type: BundleBean
+  gridElemType: MOCACO
+  name: ${faker.lorem.paragraph}
+  nameEn: 
+  nameEn: ABRIGO VESTIR CAMEL LANA CASHEMERE
+  productUrl: abrigo-lanacashmere-camel
+  productUrlParam: 8138238
+  image: null
+  isBuyable: true
+  onSpecial: true
+  backSoon: null
+  unitsLot: 1
+  isTop: 1
+  sizeSystem: 0
+  subFamily: 870
+  productType: Clothing
+  bundleColors:
+    - <<: *bcs
+    - <<: *bcs
+    - <<: *bcs
+  tags: #
+  attributes: #
+  relatedCategories:
+    - <<: *rc
+    - <<: *rc
+    - <<: *rc
+  attachments: #
+  bundleProductSummaries:
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps
+    - <<: *bps        
+  detail: detail
+  field5: null
+  sequence: 1.0
+  section: 2
+  family: 22
+  sectionName: HOMBRE
+  sectionNameEN: MEN
+  subFamilyName: ABRIGO VESTIR
+  subFamilyNameEN: SMART COAT
+  startDate: startDate # ${faker.date.between('2000-01-01', '2010-01-01')}
+  isSales: true    
+  availabilityDate: availabilityDate
+  familyName: familyName
+  familyNameEN: familyName
+
+# -----------------------------------------------------------------------------
+
+productSmall:
+  id: ${sequence.number}
+  type: BundleBean
+  gridElemType: MOCACO
+  name: ${faker.lorem.paragraph}
+  nameEn: 
+  nameEn: ABRIGO VESTIR CAMEL LANA CASHEMERE
+  productUrl: abrigo-lanacashmere-camel
+  productUrlParam: 8138238
+  image: null
+  isBuyable: true
+  onSpecial: true
+  backSoon: null
+  unitsLot: 1
+  isTop: 1
+  sizeSystem: 0
+  subFamily: 870
+  productType: Clothing
+  bundleColors:
+    - <<: *bcs
+    - <<: *bcs
+    - <<: *bcs
+  tags: #
+  attributes: #
+  relatedCategories:
+    - <<: *rc
+    - <<: *rc
+    - <<: *rc
+  attachments: #
+  bundleProductSummaries: 1
+  detail: detail
+  field5: null
+  sequence: 1.0
+  section: 2
+  family: 22
+  sectionName: HOMBRE
+  sectionNameEN: MEN
+  subFamilyName: ABRIGO VESTIR
+  subFamilyNameEN: SMART COAT
+  startDate: startDate # ${faker.date.between('2000-01-01', '2010-01-01')}
+  isSales: true    
+  availabilityDate: availabilityDate
+  familyName: familyName
+  familyNameEN: familyName
