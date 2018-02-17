@@ -23,6 +23,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import com.example.democouchbase.entity.Product;
 import com.example.democouchbase.service.MyService;
+import com.example.democouchbase.service.MyServiceNative;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.beanmother.core.ObjectMother;
 
@@ -53,7 +56,8 @@ public class ProcessFeedBenchMark   {
     static ConfigurableApplicationContext context;
 
     private MyService service;
-
+    private MyServiceNative serviceNative;
+    
     @Setup (Level.Trial) 
     public synchronized void  initialize() {
         try {
@@ -62,6 +66,8 @@ public class ProcessFeedBenchMark   {
                 context = SpringApplication.run(DemoCouchbaseApplication.class, args );
             }
             service = context.getBean(MyService.class);
+            serviceNative = context.getBean(MyServiceNative.class);
+            serviceNative.openConnection();
             
 //            service.deleteAll();
 //            System.out.println(service);
@@ -69,36 +75,74 @@ public class ProcessFeedBenchMark   {
             e.printStackTrace();
         }
     }
+    
+    public static String serialize(Object obj, boolean pretty) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        if (pretty) {
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+        }
+        return mapper.writeValueAsString(obj);
+    }
 
     @State(Scope.Thread)
     public static class MyState {
     	ObjectMother objectMother = ObjectMother.getInstance();
         Product productBig = objectMother.bear("productBig", Product.class);
         Product productSmall = objectMother.bear("productSmall", Product.class);
+        String[] productArrayBig = {"","","","","","","","","",""};
+        public MyState() {
+        	try {
+				String productBigString = serialize(productBig,false);
+				productArrayBig[0]=productBigString;
+				productArrayBig[1]=productBigString;
+				productArrayBig[2]=productBigString;
+				productArrayBig[3]=productBigString;
+				productArrayBig[4]=productBigString;
+				productArrayBig[5]=productBigString;
+				productArrayBig[6]=productBigString;
+				productArrayBig[7]=productBigString;
+				productArrayBig[8]=productBigString;
+				productArrayBig[9]=productBigString;
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+		}
     }
     
-    @Benchmark
-    @BenchmarkMode(Mode.SingleShotTime)
-    public void benchmark1_1 (ProcessFeedBenchMark state, Blackhole bh, MyState objects) {
-    	service.doWorkBig_insert(objects.productBig);
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.SingleShotTime)
-    public void benchmark1_2 (ProcessFeedBenchMark state, Blackhole bh) {
-    	service.doWorkBig_query();
-    }
-
+//    @Benchmark
+//    @BenchmarkMode(Mode.SingleShotTime)
+//    public void benchmark1_1 (ProcessFeedBenchMark state, Blackhole bh, MyState objects) {
+//    	service.doWorkBig_insert(objects.productBig);
+//    }
+//
+//    @Benchmark
+//    @BenchmarkMode(Mode.SingleShotTime)
+//    public void benchmark1_2 (ProcessFeedBenchMark state, Blackhole bh) {
+//    	service.doWorkBig_query();
+//    }
+//
+//    @Benchmark 
+//    @BenchmarkMode(Mode.SingleShotTime)
+//    public void benchmark2_1 (ProcessFeedBenchMark state, Blackhole bh, MyState objects) {
+//    	service.doWorkSmall_insert(objects.productSmall);
+//    }    
+//
+//    @Benchmark
+//    @BenchmarkMode(Mode.SingleShotTime)
+//    public void benchmark2_2 (ProcessFeedBenchMark state, Blackhole bh) {
+//    	service.doWorkSmall_query();
+//    }
+    
     @Benchmark 
     @BenchmarkMode(Mode.SingleShotTime)
-    public void benchmark2_1 (ProcessFeedBenchMark state, Blackhole bh, MyState objects) {
-    	service.doWorkSmall_insert(objects.productSmall);
+    public void benchmark3_1 (ProcessFeedBenchMark state, Blackhole bh, MyState objects) {
+    	serviceNative.doWorkBig_insert(objects.productArrayBig);
     }    
 
     @Benchmark
     @BenchmarkMode(Mode.SingleShotTime)
-    public void benchmark2_2 (ProcessFeedBenchMark state, Blackhole bh) {
-    	service.doWorkSmall_query();
-    }
+    public void benchmark3_2 (ProcessFeedBenchMark state, Blackhole bh) {
+    	serviceNative.doWorkBig_query();
+    }    
 
 }
