@@ -135,7 +135,7 @@ public class Product {
 
     @JsonProperty("id")
     public void setId(Integer id) {
-        this.id = id+10000;
+        this.id = id;
     }
 
     @JsonProperty("type")

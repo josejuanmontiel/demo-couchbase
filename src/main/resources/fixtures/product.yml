@@ -275,7 +275,19 @@ productSmall:
     - <<: *rc
     - <<: *rc
   attachments: #
-  bundleProductSummaries: 1
+  bundleProductSummaries: 
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
+    - <<: *bpsl2
   detail: detail
   field5: null
   sequence: 1.0

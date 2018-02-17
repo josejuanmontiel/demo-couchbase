@@ -3,6 +3,8 @@ package com.example.democouchbase;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
@@ -19,7 +21,10 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import com.example.democouchbase.entity.Product;
 import com.example.democouchbase.service.MyService;
+
+import io.beanmother.core.ObjectMother;
 
 @BenchmarkMode(Mode.Throughput) @OutputTimeUnit(TimeUnit.MINUTES)
 @State(Scope.Thread)
@@ -58,30 +63,42 @@ public class ProcessFeedBenchMark   {
             }
             service = context.getBean(MyService.class);
             
-            service.deleteAll();
-            System.out.println(service);
+//            service.deleteAll();
+//            System.out.println(service);
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Benchmark
-    @BenchmarkMode(Mode.SingleShotTime)
-    public void benchmark1 (ProcessFeedBenchMark state, Blackhole bh) {
-        try {
-            service.doWorkBig();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @State(Scope.Thread)
+    public static class MyState {
+    	ObjectMother objectMother = ObjectMother.getInstance();
+        Product productBig = objectMother.bear("productBig", Product.class);
+        Product productSmall = objectMother.bear("productSmall", Product.class);
     }
     
+    @Benchmark
+    @BenchmarkMode(Mode.SingleShotTime)
+    public void benchmark1_1 (ProcessFeedBenchMark state, Blackhole bh, MyState objects) {
+    	service.doWorkBig_insert(objects.productBig);
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.SingleShotTime)
+    public void benchmark1_2 (ProcessFeedBenchMark state, Blackhole bh) {
+    	service.doWorkBig_query();
+    }
+
     @Benchmark 
     @BenchmarkMode(Mode.SingleShotTime)
-    public void benchmark2 (ProcessFeedBenchMark state, Blackhole bh) {
-        try {
-            service.doWorkSmall();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void benchmark2_1 (ProcessFeedBenchMark state, Blackhole bh, MyState objects) {
+    	service.doWorkSmall_insert(objects.productSmall);
     }    
+
+    @Benchmark
+    @BenchmarkMode(Mode.SingleShotTime)
+    public void benchmark2_2 (ProcessFeedBenchMark state, Blackhole bh) {
+    	service.doWorkSmall_query();
+    }
+
 }
